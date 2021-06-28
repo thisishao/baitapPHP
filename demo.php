@@ -72,9 +72,7 @@
 
 		if (empty($_POST['numb'])) {
 			$error= "Vui lòng nhập";
-		}
-
-		if (!empty($_POST['numb'])) {
+		}else{
 			if ($so_du == 0 ) {
 				echo $number. ' Chia hết cho 7';
 			}else{
@@ -82,9 +80,6 @@
 			}
 		}
 
-
-	}else{
-		$error = "Bạn chưa click";
 	}
 ?>
 

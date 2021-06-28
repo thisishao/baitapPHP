@@ -8,30 +8,36 @@
 	$error_ls	= "";
 	$dau = "";
 
-
+	$check = 1;
 
 
 	if (isset($_POST['form_sub'])) {
 		if (empty($_POST['toan'])) {
 			$error_toan = "Bạn chưa nhập điểm Toán";
+			$check = 0;
 		}
 		if (empty($_POST['ly'])) {
 			$error_ly = "Bạn chưa nhập điểm Lý";
+			$check = 0;
 		}
 		if (empty($_POST['hoa'])) {
 			$error_hoa = "Bạn chưa nhập điểm Hoá";
+			$check = 0;
 		}
 		if (empty($_POST['anh'])) {
 			$error_anh = "Bạn chưa nhập điểm Tiếng Anh";
+			$check = 0;
 		}
 		if (empty($_POST['van'])) {
 			$error_van = "Bạn chưa nhập điểm Văn";
+			$check = 0;
 		}
 		if (empty($_POST['ls'])) {
 			$error_ls = "Bạn chưa nhập điểm Lịch sử";
+			$check = 0;
 		}
 
-		if (!empty($_POST['toan']) && !empty($_POST['ly']) && !empty($_POST['hoa']) && !empty($_POST['anh']) && !empty($_POST['van']) && !empty($_POST['ls'])) {
+		if ($check == 1) {
 
 				$toann 	= $_POST['toan'] > 0 && $_POST['toan'] <= 10 ;
 				$lyy 	= $_POST['ly'] > 0 && $_POST['ly'] <= 10 ;
