@@ -175,33 +175,45 @@
 
 
     function chuhoa($demo2)
-    {
+    {       
+        
         foreach ($demo2 as $key => $val) {
-            echo $key." Giá trị ".strtoupper($val)." </br>";
-
+            // echo $key." Giá trị ".strtolower($val)." </br>";
             
-        }
+            // $val = strtoupper($val);
+
+            $arrayHoa[$key] = strtolower($val);
+            
+            // print_r($arrayHoa);
+        }   
+        return $arrayHoa;
     }
     function chuthuong($demo2)
-    {
+    {       
+        
         foreach ($demo2 as $key => $val) {
-            echo $key." Giá trị ".strtolower($val)." </br>";
+            // echo $key." Giá trị ".strtolower($val)." </br>";
             
-            // echo strtolower($val);
-            // $demo2[$val] = strtolower($val);
+            // $val = strtoupper($val);
+
+            $arrayHoa[$key] = strtoupper($val);
             
-        }
+            // print_r($arrayHoa);
+
+        }   
+        return $arrayHoa;
     }
+    print_r($demo2);
 
+    echo "<br> chữ thường <br>";
+    $chuthuong = chuhoa($demo2);  
+    print_r($chuthuong);
+    echo "<br> CHỮ HOA <br>";
+    $chuhoa = chuthuong($demo2);  
+    print_r($chuhoa);
+    // print_r($arrayHoa);
 
-    echo "Chữ hoa </br>";
-    chuhoa($demo2);
-    echo "</br>";
-    echo "Chữ thường </br>";
-    chuthuong($demo2);
-
-    // var_dump($demo2);
-
+    // chuthuong($demo2);
 
  
 ?>
