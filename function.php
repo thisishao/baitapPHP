@@ -97,34 +97,111 @@
 
 <?php 
     
-    $getA = $_POST['soA'];
-    $getB = $_POST['soB'];
-    $getC = $_POST['soC'];
+    // $getA = $_POST['soA'];
+    // $getB = $_POST['soB'];
+    // $getC = $_POST['soC'];
 
 
-    function timsolonnhat($getA, $getB, $getC)
+    // function timsolonnhat($getA, $getB, $getC)
+    // {
+    //     $max = $getA;
+    //     if ($max < $getB) {
+    //         $max = $getB;
+    //     }
+    //     if ($max < $getC) {
+    //         $max = $getC;
+    //     }
+    //     echo 'Số lớn nhất là '.$max;
+    // }
+
+    // timsolonnhat($getA, $getB, $getC);
+
+
+    // function chiahet($numb)
+    // {
+    //     for ($i=1; $i <= 1000 ; $i++) { 
+    //         if ($i % 40 == 0) {
+    //             echo $i." ";
+    //         }
+    //     }
+    // }
+    // chiahet($numb);
+
+    // echo "</br>";
+    // echo "</br>";
+    // echo "Nam nói\"Cậu ấy đang ăn tối\" ";
+
+
+    // $demo = array("Hoang"=>"31","Nam"=>"41","Minh"=>"39","Hoa"=>"40");
+
+    // asort($demo);
+    // echo "1. Sắp xếp tăng dần theo Value: </br>";
+    // foreach ($demo as $x => $x_value) {
+    //     echo "Tuổi của ".$x." là: ".$x_value;
+    //     echo "</br>";
+    // }
+
+    // ksort($demo);
+    // echo "2. Sắp xếp tăng dần theo Key: </br>";
+    // foreach ($demo as $x => $x_value) {
+    //     echo "Tuổi của ".$x." là: ".$x_value;
+    //     echo "</br>";
+    // }
+    // arsort($demo);
+    // echo "3. Sắp xếp giảm dần theo Value: </br>";
+    // foreach ($demo as $x => $x_value) {
+    //     echo "Tuổi của ".$x." là: ".$x_value;
+    //     echo "</br>";
+    // }
+
+    // krsort($demo);
+    // echo "2. Sắp xếp giảm dần theo Key: </br>";
+    // foreach ($demo as $x => $x_value) {
+    //     echo "Tuổi của ".$x." là: ".$x_value;
+    //     echo "</br>";
+    // }
+
+    // function sapxep($demo)
+    // {
+    //     foreach ($demo as $x => $x_value) {
+    //     echo "Tuổi của ".$x." là: ".$x_value;
+    //     echo "</br>";
+    //     }
+    // }
+    // krsort(sapxep($demo));
+
+
+    $demo2 = array('A' => 'Blue', 'B' => 'Green', 'c' => 'Red');
+
+
+    function chuhoa($demo2)
     {
-        $max = $getA;
-        if ($max < $getB) {
-            $max = $getB;
+        foreach ($demo2 as $key => $val) {
+            echo $key." Giá trị ".strtoupper($val)." </br>";
+
+            
         }
-        if ($max < $getC) {
-            $max = $getC;
+    }
+    function chuthuong($demo2)
+    {
+        foreach ($demo2 as $key => $val) {
+            echo $key." Giá trị ".strtolower($val)." </br>";
+            
+            // echo strtolower($val);
+            // $demo2[$val] = strtolower($val);
+            
         }
-        echo 'Số lớn nhất là '.$max;
     }
 
-    timsolonnhat($getA, $getB, $getC);
+
+    echo "Chữ hoa </br>";
+    chuhoa($demo2);
+    echo "</br>";
+    echo "Chữ thường </br>";
+    chuthuong($demo2);
+
+    // var_dump($demo2);
 
 
-    function chiahet($numb)
-    {
-        for ($i=1; $i <= 1000 ; $i++) { 
-            if ($i % 40 == 0) {
-                echo $i." ";
-            }
-        }
-    }
-    chiahet($numb);
  
 ?>
