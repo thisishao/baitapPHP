@@ -8,64 +8,61 @@ register.php: gom co form va cac input sau:
 + Ve phan email, kiemtra them 1 dk, gia tri nhap vao co pai email hay k?
 + avatar thi cho phep upload dang hinh anh va duoi 1mb -->
 
+<!-- - kiem tra email da nhap chua, chua thi dua loi vao trong mang.
+- neu nhap roi thi kiem tra dung dinh dang email chua, chua thi dua loi vao mang
+tuong tu nhung cai khac.
+Khi tat ca moi thu ok het: moi tien hanh dua email va pass vao SS -->
+
 
 <?php session_start();
     
-    $errorM = array();
+    $array_error = [];
+    // var_dump($array_error);
     $demozz = 1;
     if (isset($_POST['sub'])) {
         
         // dang nhap email
 
-        if (isset($_POST['email']) ? $_POST['email']: '') {
+        if (empty($_POST['email'])) {
+
+            $array_error[] = "Vui lòng nhập Email";
+
+            $demozz = 0;
+        }else{
+
             $getEmail = $_POST['email'];
             if (filter_var($getEmail, FILTER_VALIDATE_EMAIL)) {
                 $_SESSION['email'] = $getEmail;
   
             }else{
-                $demo1 = array('error_EmailD' => 'Vui lòng nhập đúng định dạng Email');
+                $array_error[] =  'Vui lòng nhập đúng định dạng Email';
                 $demozz = 0;
+            
+                
             }
-        }else{
-            $errorEmail = array('error_Email' => 'Vui lòng nhập Email');
-            if (isset($errorM)) {
-                $demo1 = array_merge($errorM, $errorEmail);
-            }
-            $demozz = 0;
-            unset($_SESSION['email']);
-            // var_dump($demo1);
-        }
 
+        }
+        // print_r($array_error);
         // dang ky username
 
-        if (isset($_POST['Username']) ? $_POST['Username']: '') {
-            $_SESSION['Username'] = $_POST['Username'];
-
-        }else{
-            $errorUser = array('error_Username' => 'Vui lòng nhập Username');
-            if (isset($demo1)) {
-                $demo1 = array_merge($demo1, $errorUser);
-            }else{
-                $demo1 = $errorUser;
-            }
-            unset($_SESSION['Username']);
+        if (empty($_POST['Username'])) {
+            array_push($array_error, "Vui lòng nhập Username");
             $demozz = 0;
+        }else{
+
+            $_SESSION['Username'] = $_POST['Username'];
         }
 
 
         // dang ky password
 
-        if (isset($_POST['pwd']) ? $_POST['pwd']: '') {
-            $_SESSION['pwd'] = $_POST['pwd'];
-        }else{
-            $errorPwd = array('error_Pwd' => 'Vui lòng nhập Password');
-            if (isset($demo1)) {
-                $demo1 = array_merge($demo1, $errorPwd);
-            }else{
-                $demo1 = $errorPwd;
-            }
-            unset($_SESSION['pwd']);
+        if (empty($_POST['pwd'])) {
+            array_push($array_error, "Vui lòng nhập Password");
             $demozz = 0;
+        }else{
+
+            $_SESSION['pwd'] = $_POST['pwd'];
+            
         }
 
 
@@ -80,31 +77,16 @@ register.php: gom co form va cac input sau:
 
             if ($demo2 === TRUE) {
                 if ($_FILES['avt']['size'] >= $size) {
-                    $errorImgsize = array('errorImgsize' => 'Vui lòng upload file dưới 1MB');
-                    if (isset($demo1)) {
-                        $demo1 = array_merge($demo1, $errorImgsize);
-                    }else{
-                        $demo1 = $errorImgsize;
-                    }
+                    array_push($array_error, "Vui lòng upload file dưới 1MB");
                     $demozz = 0;
                 }elseif($_FILES['avt']['error'] > 0){
-                    $errorImgr = array('errorImgr' => 'File Upload Bị Lỗi');
-                    if (isset($demo1)) {
-                        $demo1 = array_merge($demo1, $errorImgr);
-                    }else{
-                        $demo1 = $errorImgr;
-                    }
+                    array_push($array_error, "File Upload Bị Lỗi");
                     $demozz = 0;
                 }else{
                     move_uploaded_file($_FILES['avt']['tmp_name'],'./demo/'.$_FILES['avt']['name']);
                 }   
             }else{
-                $errorImg = array('errorImg' => 'Vui lòng chọn hình ảnh để upload');
-                if (isset($demo1)) {
-                    $demo1 = array_merge($demo1, $errorImg);
-                }else{
-                    $demo1 = $errorImg;
-                }
+                array_push($array_error, "Vui lòng chọn hình ảnh để upload");
                 $demozz = 0;
             }
         }
@@ -113,18 +95,12 @@ register.php: gom co form va cac input sau:
             echo '<script type="text/javascript">
             window.location = "login.php"
             </script>';
-            return false;
+            // return false;
         }
-        // return false;
 
-        // var_dump($demo1);
-
-        // echo $_SESSION['email'];
-        // echo $_SESSION['name'];
-        // echo $_SESSION['pwd'];
     }
 
-    
+    var_dump($array_error);
 ?>
 
 <!DOCTYPE html>
@@ -157,7 +133,6 @@ register.php: gom co form va cac input sau:
                             // break;
                         }
 
-                        echo $demo1['error_Username'];
                         // echo $val;
                         break;
                     }
