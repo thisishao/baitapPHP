@@ -7,6 +7,8 @@
 		unset($_SESSION['cart'][$key]);
 	}
 	
+	$tong = 0;
+	// echo $tong;
 
 
 ?>
@@ -181,9 +183,10 @@
 					</thead>
 					
 					<tbody>
-
 						<?php foreach ($_SESSION['cart'] as $key => $val) { ?>
-							<?php $total = $_SESSION['cart'][$key]['price'] * $_SESSION['cart'][$key]['qty'] ?>
+							<?php $total = $_SESSION['cart'][$key]['price'] * $_SESSION['cart'][$key]['qty'] 
+							?>
+							<?php $tong = $tong + $total; ?>
 							<tr>
 								<td class="cart_product">
 									<a href=""><img src="<?php echo $_SESSION['cart'][$key]['img']; ?>"></a>
@@ -207,12 +210,13 @@
 								</td>
 								<td class="cart_delete">
 								<form method="POST">
-									<input type="text" name="keys" value="<?php echo $key ?>">
+									<input type="hidden" name="keys" value="<?php echo $key ?>">
 									<button class="cart_quantity_delete" name="del"><i class="fa fa-times"></i></button>
 								</form>
 								</td>
 							</tr>
 						<?php } ?>
+
 					</tbody>
 
 				</table>
@@ -287,7 +291,7 @@
 							<li>Cart Sub Total <span>$59</span></li>
 							<li>Eco Tax <span>$2</span></li>
 							<li>Shipping Cost <span>Free</span></li>
-							<li>Total <span>$61</span></li>
+							<li>Total <span><?php echo '$'.$tong ?></span></li>
 						</ul>
 							<a class="btn btn-default update" href="">Update</a>
 							<a class="btn btn-default check_out" href="">Check Out</a>
